@@ -30,8 +30,8 @@ const Month = ({
         }}
         boxShadow={selected ? '0 0 0pt 2.5pt black' : 'none'}
         padding="5px"
-        width="15vw"
-        height="9vw"
+        width="4rem"
+        height="3rem"
         marginTop="3px"
         marginBottom="3px"
         onClick={() => {

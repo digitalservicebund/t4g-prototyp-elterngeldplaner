@@ -3,17 +3,12 @@ import { Container, Row } from 'react-bootstrap';
 import { LargeTitle, NormalText } from './styled/StyledText';
 
 const PageTemplate = ({ pageTitle, description, children }) => {
-  const paddingLeftRight = '18px';
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <Container
-      fluid
-      className="justify-content-center"
-      style={{ paddingLeft: paddingLeftRight, paddingRight: paddingLeftRight }}>
+    <Container fluid className="justify-content-center">
       <Row className="d-flex bg-white">
         <LargeTitle>{pageTitle}</LargeTitle>
       </Row>

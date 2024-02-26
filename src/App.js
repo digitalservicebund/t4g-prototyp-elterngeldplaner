@@ -1,16 +1,6 @@
 import './App.css';
 import { useState, useContext, useEffect, useRef } from 'react';
-import {
-  AlertDialog,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogCloseButton,
-  Button,
-  useDisclosure
-} from '@chakra-ui/react';
+import { Container } from 'react-bootstrap';
 import Planner from './pages/planner/Planner';
 import Header from './components/ui/Header';
 import NameInputPage from './pages/nameInputPage/NameInputPage';
@@ -24,8 +14,6 @@ import FinalSummeryPage from './pages/finalSummeryPage/FinalSummeryPage';
 const App = () => {
   const [currentPage, setCurrentPage] = useState(<StartPage />);
   const { activeStepIndex } = useContext(FormContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
 
   const pageNames = [
     'Start',
@@ -36,45 +24,6 @@ const App = () => {
     'Planer',
     'Zusammenfassung eurer Planung'
   ];
-
-  const desktopAlertDialog = (
-    <AlertDialog
-      motionPreset="slideInBottom"
-      leastDestructiveRef={cancelRef}
-      onClose={onClose}
-      isOpen={isOpen}
-      isCentered>
-      <AlertDialogOverlay />
-
-      <AlertDialogContent>
-        <AlertDialogHeader>Das ist eine mobile Anwendung</AlertDialogHeader>
-        <AlertDialogCloseButton />
-        <AlertDialogBody>
-          Dieser Prototyp wurde bisher nur für Mobilgeräte umgesetzt. <br /> Bitte besuche die Seite
-          auf deinem Mobilgerät für die beste User Experience :)
-        </AlertDialogBody>
-        <AlertDialogFooter>
-          <Button colorScheme="red" ml={3} ref={cancelRef} onClick={onClose}>
-            Okay
-          </Button>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-
-  const handleResize = () => {
-    if (window.innerWidth > 768) {
-      // open alert dialog when user is on desktop
-      onOpen();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize());
-    return () => {
-      window.removeEventListener('resize', handleResize());
-    };
-  }, []);
 
   useEffect(() => {
     switch (activeStepIndex) {
@@ -106,11 +55,10 @@ const App = () => {
   }, [activeStepIndex]);
 
   return (
-    <>
-      {desktopAlertDialog}
+    <Container style={{ maxWidth: '600px' }}>
       <Header pageNames={pageNames} />
       {currentPage}
-    </>
+    </Container>
   );
 };
 

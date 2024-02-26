@@ -3,7 +3,13 @@ import MenuDrawer from './MenuDrawer';
 
 const Header = ({ pageNames }) => {
   return (
-    <Container className="justify-content-center text-center">
+    <Container
+      fluid
+      className="justify-content-center text-center"
+      style={{
+        paddingLeft: '.4rem',
+        marginBottom: '1rem'
+      }}>
       <Row xs="auto" className="justify-content-between text-center align-items-center">
         <Col>
           <MenuDrawer pageNames={pageNames} />
